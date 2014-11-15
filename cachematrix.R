@@ -11,8 +11,8 @@
 ##
 ## Usage Example:
 ##    cm <- makeCacheMatrix(matrix(c(2, 2, 3, 2), 2, 2))
-##    cacheSolve(cm)  # <- Calculated & Cached
-##    cacheSolve(cm)  # <- Cache fetch
+##    cacheSolve(cm)  # <- First time calculated & cached
+##    cacheSolve(cm)  # <- Consecutive time fetched from cache
 ##
 ## NOTE: Google coding style was adopted, when not conflicting with
 ##       Prof. sytle, or assignment's instructions
@@ -25,7 +25,7 @@
 ##      matrix - The matrix value ex. matrix(c(1:4), 2, 2)
 ##               NOTE: ONlY invertible matrices will produce valid result   
 ## Return value:
-##  A list of functions:
+##  A list of functions to manage internal state:
 ##      get - get the matrix value
 ##      set - reset the matrix value
 ##      getInverse - get the cached matrix inverse value
@@ -64,6 +64,7 @@ makeCacheMatrix <- function(matrix = matrix()) {
 ##
 ## Args:
 ##      cached.matrix - matrix wrapper created by makeCachedMatrix
+##      ...           - further arguments passed to or from other methods
 ##
 ## Return value:
 ##      The cached.matrix inverse
